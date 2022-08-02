@@ -5,6 +5,10 @@ import com.capgemini.Logistics.orders.OrderStatus;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
 
 @Entity
 @Table(name = "orders")
@@ -13,6 +17,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @ToString
+@Builder
 public class Order {
 
     @Id
@@ -28,7 +33,7 @@ public class Order {
     private OrderStatus orderStatus = OrderStatus.NEW;
 
     @Column(name = "last_updated")
-    private Long lastUpdated;
+    private Long lastUpdated = LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant().toEpochMilli();
 
     @ManyToOne
     @JoinColumn(name="destination_id", nullable=false)

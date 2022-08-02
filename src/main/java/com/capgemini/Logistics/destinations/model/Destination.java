@@ -13,6 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+@Builder
 public class Destination {
 
     @Id
@@ -27,4 +28,8 @@ public class Destination {
 
     @OneToMany(mappedBy="destination")
     private List<Order> orders;
+
+    public Destination(String destinationName) {
+        this.destinationName = destinationName;
+    }
 }
