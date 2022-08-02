@@ -5,6 +5,7 @@ import com.capgemini.Logistics.destinations.service.DestinationService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,5 +24,10 @@ public class DestinationController {
     @GetMapping("/")
     public ResponseEntity<List<DestinationDTO>> getAllDestinations() {
         return new ResponseEntity<>(destinationService.getAllDestinations(), HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<DestinationDTO> getDestinationById(@PathVariable Integer id) {
+        return new ResponseEntity<>(destinationService.getDestinationById(id), HttpStatus.OK);
     }
 }
