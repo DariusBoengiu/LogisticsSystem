@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Table(name = "orders")
@@ -38,6 +39,13 @@ public class Order {
     @ManyToOne
     @JoinColumn(name="destination_id", nullable=false)
     private Destination destination;
+
+    public Order(Destination destination, Long deliveryDate) {
+        this.destination = destination;
+        this.deliveryDate = deliveryDate;
+    }
+
+
 
 
 }

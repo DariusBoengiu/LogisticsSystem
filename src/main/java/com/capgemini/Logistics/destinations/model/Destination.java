@@ -32,4 +32,9 @@ public class Destination {
     public Destination(String destinationName) {
         this.destinationName = destinationName;
     }
+
+    public Destination(String destinationName, Integer distance) {
+        this.destinationName = destinationName;
+        this.distance = distance;
+    }
 }
