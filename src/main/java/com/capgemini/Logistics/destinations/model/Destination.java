@@ -26,7 +26,8 @@ public class Destination {
 
     private Integer distance;
 
-    @OneToMany(mappedBy="destination")
+    @OneToMany(mappedBy = "destination", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
     private List<Order> orders;
 
     public Destination(String destinationName) {

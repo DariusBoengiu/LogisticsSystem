@@ -31,4 +31,9 @@ public class DestinationService {
                         )
         );
     }
+
+    public void deleteDestinationById(Integer id) {
+        getDestinationById(id);
+        destinationRepository.deleteById(id);
+    }
 }
