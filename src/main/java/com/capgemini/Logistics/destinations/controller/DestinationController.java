@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -32,5 +33,10 @@ public class DestinationController {
     public ResponseEntity<HttpStatus> deleteDestinationById(@PathVariable Integer id) {
         destinationService.deleteDestinationById(id);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PostMapping("/")
+    public ResponseEntity<DestinationDTO> addDestination(@RequestBody @Valid DestinationDTO destinationDTO) {
+        return new ResponseEntity<>(destinationService.addDestination(destinationDTO), HttpStatus.CREATED);
     }
 }

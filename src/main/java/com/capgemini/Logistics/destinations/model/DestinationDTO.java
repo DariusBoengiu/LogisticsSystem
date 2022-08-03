@@ -2,6 +2,8 @@ package com.capgemini.Logistics.destinations.model;
 
 import lombok.*;
 
+import javax.validation.constraints.NotNull;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
@@ -11,6 +13,8 @@ import lombok.*;
 public class DestinationDTO {
 
     private Integer destinationId;
+    @NotNull
     private String destinationName;
+    @NotNull
     private Integer distance;
 }
