@@ -36,8 +36,8 @@ public class Order {
     @Column(name = "last_updated")
     private Long lastUpdated = LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant().toEpochMilli();
 
-    @ManyToOne
-    @JoinColumn(name="destination_id", nullable=false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "destination_id", nullable = false)
     private Destination destination;
 
     public Order(Destination destination, Long deliveryDate) {

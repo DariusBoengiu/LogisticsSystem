@@ -21,12 +21,14 @@ public class Destination {
     @Column(name = "destination_id")
     private Integer destinationId;
 
-    @Column(name = "destination_name", unique = true)
+    @Column(name = "destination_name", unique = true, nullable = false)
     private String destinationName;
 
+    @Column(nullable = false)
     private Integer distance;
 
-    @OneToMany(mappedBy="destination")
+    @OneToMany(mappedBy = "destination", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
     private List<Order> orders;
 
     public Destination(String destinationName) {
