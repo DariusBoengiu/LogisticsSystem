@@ -39,4 +39,10 @@ public class DestinationController {
     public ResponseEntity<DestinationDTO> addDestination(@RequestBody @Valid DestinationDTO destinationDTO) {
         return new ResponseEntity<>(destinationService.addDestination(destinationDTO), HttpStatus.CREATED);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<DestinationDTO> updateDestination(@PathVariable Integer id,
+                                                            @RequestBody @Valid DestinationDTO destinationDTO) {
+        return new ResponseEntity<>(destinationService.updateDestination(id, destinationDTO), HttpStatus.OK);
+    }
 }

@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 public class DestinationDTO {
 
     private Integer destinationId;
-    @NotNull
+    
     private String destinationName;
     @NotNull
     private Integer distance;
