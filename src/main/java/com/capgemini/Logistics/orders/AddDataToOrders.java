@@ -4,8 +4,6 @@ import com.capgemini.Logistics.orders.model.Order;
 import com.capgemini.Logistics.orders.repository.OrderRepository;
 import com.capgemini.Logistics.orders.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 import org.tinylog.Logger;
 
@@ -53,6 +51,6 @@ public class AddDataToOrders {
         if (orderAttributes.length != 2) {
             throw new IllegalArgumentException("Corrupted data");
         }
-        return orderService.createEntityFromMinimalData(orderAttributes[1], orderAttributes[0]);
+        return orderService.createOrderEntityFromMinimalData(orderAttributes[1], orderAttributes[0]);
     }
 }
