@@ -3,6 +3,7 @@ package com.capgemini.Logistics.orders.model;
 import com.capgemini.Logistics.orders.OrderStatus;
 import lombok.*;
 
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @AllArgsConstructor
@@ -13,8 +14,10 @@ import java.time.LocalDate;
 public class OrderDTO {
 
     private Integer orderId;
-    private LocalDate deliveryDate;
-    private LocalDate lastUpdated;
+    @NotNull
+    private String deliveryDate;
+    private String lastUpdated;
     private OrderStatus orderStatus;
+    @NotNull
     private String destination;
 }
