@@ -3,6 +3,7 @@ package com.capgemini.Logistics.orders.service;
 import com.capgemini.Logistics.destinations.model.Destination;
 import com.capgemini.Logistics.destinations.repository.DestinationRepository;
 import com.capgemini.Logistics.exceptions.NoncompliantDateException;
+import com.capgemini.Logistics.orders.OrderStatus;
 import com.capgemini.Logistics.orders.model.Order;
 import com.capgemini.Logistics.orders.model.OrderDTO;
 import com.capgemini.Logistics.orders.model.OrderMapper;
@@ -60,4 +61,26 @@ public class OrderService {
 
         return savedOrders.stream().map(OrderMapper::toOrderDTO).collect(Collectors.toList());
     }
+
+    public List<OrderDTO> cancelOrders(Integer[] ids) {
+        List<Order> ordersToBeCancelled = new ArrayList<>();
+        for (Integer id : ids) {
+            orderRepository.findById(id).ifPresent(ordersToBeCancelled::add);
+        }
+
+        List<Order> canceledOrders = new ArrayList<>();
+        for (Order order : ordersToBeCancelled) {
+            if (order.getOrderStatus() == OrderStatus.NEW || order.getOrderStatus() == OrderStatus.DELIVERING) {
+                order.setOrderStatus(OrderStatus.CANCELED);
+                canceledOrders.add(order);
+            }
+        }
+
+        orderRepository.saveAll(canceledOrders);
+
+        return canceledOrders.stream().map(OrderMapper::toOrderDTO).collect(Collectors.toList());
+
+    }
+
+
 }

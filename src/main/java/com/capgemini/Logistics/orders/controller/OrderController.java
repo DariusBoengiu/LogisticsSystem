@@ -28,4 +28,9 @@ public class OrderController {
     public ResponseEntity<List<OrderDTO>> addOrders(@RequestBody @Valid OrderDTO[] orders) {
         return new ResponseEntity<>(orderService.addOrders(orders), HttpStatus.CREATED);
     }
+
+    @PostMapping("/cancel")
+    public ResponseEntity<List<OrderDTO>> cancelOrders(@RequestBody Integer[] ids) {
+        return new ResponseEntity(orderService.cancelOrders(ids), HttpStatus.OK);
+    }
 }
